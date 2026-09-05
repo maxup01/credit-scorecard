@@ -12,11 +12,7 @@ class PersonHomeOwnership(Enum):
         return [member.value for member in cls]
 
     def one_hot(self) -> np.ndarray:
-        members = list(PersonHomeOwnership)
-
-        vector = np.zeros(len(members), dtype=int)
-        vector[members.index(self)] = 1
-        return vector
+        return one_hot(PersonHomeOwnership.values(), self.value)
 
 
 class LoanIntent(Enum):
@@ -26,3 +22,8 @@ class LoanIntent(Enum):
     MEDICAL = "MEDICAL"
     PERSONAL = "PERSONAL"
     VENTURE = "VENTURE"
+
+def one_hot(variants: list[str], value: str) -> np.ndarray:
+    vector = np.zeros(len(variants), dtype=int)
+    vector[variants.index(value)] = 1
+    return vector
