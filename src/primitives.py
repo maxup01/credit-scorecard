@@ -26,8 +26,11 @@ class LoanIntent(Enum):
     VENTURE = "VENTURE"
 
     @classmethod
-    def value(cls) -> list[str]:
+    def values(cls) -> list[str]:
         return [member.value for member in cls]
+
+    def one_hot(self) -> np.ndarray:
+        return one_hot(LoanIntent.values(), self.value)
 
 def one_hot(variants: list[str], value: str) -> np.ndarray:
     vector = np.zeros(len(variants), dtype=int)
