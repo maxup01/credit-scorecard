@@ -45,6 +45,9 @@ class LoanGrade(Enum):
     def values(cls) -> list[str]:
         return [member.value for member in cls]
 
+    def one_hot(self) -> np.ndarray:
+        return one_hot(LoanGrade.values(), self.value)
+
 def one_hot(variants: list[str], value: str) -> np.ndarray:
     """Build a one-hot vector marking where ``value`` sits among ``variants``.
 
