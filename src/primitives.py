@@ -1,4 +1,6 @@
 from enum import Enum
+from typing import Callable
+
 import numpy as np
 
 class PersonHomeOwnership(Enum):
@@ -22,6 +24,10 @@ class LoanIntent(Enum):
     MEDICAL = "MEDICAL"
     PERSONAL = "PERSONAL"
     VENTURE = "VENTURE"
+
+    @classmethod
+    def value(cls) -> list[str]:
+        return [member.value for member in cls]
 
 def one_hot(variants: list[str], value: str) -> np.ndarray:
     vector = np.zeros(len(variants), dtype=int)
