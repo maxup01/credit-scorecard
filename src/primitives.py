@@ -32,6 +32,15 @@ class LoanIntent(Enum):
     def one_hot(self) -> np.ndarray:
         return one_hot(LoanIntent.values(), self.value)
 
+class LoanGrade(Enum):
+    A = 'A'
+    B = 'B'
+    C = 'C'
+    D = 'D'
+    E = 'E'
+    F = 'F'
+    G = 'G'
+
 def one_hot(variants: list[str], value: str) -> np.ndarray:
     """Build a one-hot vector marking where ``value`` sits among ``variants``.
 
