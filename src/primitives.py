@@ -17,3 +17,12 @@ class PersonHomeOwnership(Enum):
         vector = np.zeros(len(members), dtype=int)
         vector[members.index(self)] = 1
         return vector
+
+
+class LoanIntent(Enum):
+    DEBTCONSOLIDATION = "DEBTCONSOLIDATION"
+    EDUCATION = "EDUCATION"
+    HOMEIMPROVEMENT = "HOMEIMPROVEMENT"
+    MEDICAL = "MEDICAL"
+    PERSONAL = "PERSONAL"
+    VENTURE = "VENTURE"
