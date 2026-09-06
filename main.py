@@ -93,7 +93,7 @@ def main():
         prediction = model.predict(features)
 
         if prediction[0, 0] == 1:
-            print("Prediction: this loan is likely to DEFAULT - do not grant.\n")
+            print("Prediction: this loan is likely to default - do not grant.\n")
         else:
             print("Prediction: this loan is likely to be repaid - safe to grant.\n")
 
