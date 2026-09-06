@@ -25,6 +25,14 @@ class LogisticRegression:
 
         return {"dw": dw, "db": db}
 
+    def gradient_position(self, X: np.ndarray, Y: np.ndarray) -> tuple[dict[str, np.ndarray | float], float]:
+        H = self.hypothesis(X)
+
+        cost = self.cost(H, Y)
+        grads = self.calculate_gradient(H, X, Y)
+
+        return grads, cost
+
     @staticmethod
     def cost(H: np.ndarray, Y: np.ndarray) -> float:
         cost = -np.sum(Y * np.log(H) + (1 - Y) * np.log(1 - H)) / len(H)
