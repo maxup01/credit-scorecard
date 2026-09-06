@@ -198,4 +198,17 @@ class LogisticRegression:
 
     @staticmethod
     def sigmoid(z: np.ndarray) -> np.ndarray:
+        """Squash any real-valued score into a (0, 1) probability.
+
+        Applied elementwise: `z = 0` maps to `0.5`, large positive `z` maps
+        toward `1`, large negative `z` maps toward `0`. This is what turns
+        `hypothesis`'s linear score `wᵀX + b` into something readable as a
+        probability of default.
+
+        Args:
+            z: Any real-valued array.
+
+        Returns:
+            np.ndarray: Same shape as `z`, values in (0, 1).
+        """
         return 1 / (1 + np.exp(-z))
