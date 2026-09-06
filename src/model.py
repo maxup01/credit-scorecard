@@ -16,6 +16,14 @@ class LogisticRegression:
 
         return self.sigmoid(dot_product + self.bias)
 
+    def gradient_position(self, X: np.ndarray, Y: np.ndarray) -> tuple[dict[str, np.ndarray | float], float]:
+        H = self.hypothesis(X)
+
+        cost = self.cost(H, Y)
+        grads = self.calculate_gradient(H, X, Y)
+
+        return grads, cost
+
     @staticmethod
     def calculate_gradient(H: np.ndarray, X: np.ndarray, Y: np.ndarray) -> dict[str, np.ndarray | float]:
         m = X.shape[1]
@@ -24,14 +32,6 @@ class LogisticRegression:
         db = np.sum(H - Y) / m
 
         return {"dw": dw, "db": db}
-
-    def gradient_position(self, X: np.ndarray, Y: np.ndarray) -> tuple[dict[str, np.ndarray | float], float]:
-        H = self.hypothesis(X)
-
-        cost = self.cost(H, Y)
-        grads = self.calculate_gradient(H, X, Y)
-
-        return grads, cost
 
     @staticmethod
     def cost(H: np.ndarray, Y: np.ndarray) -> float:
