@@ -2,6 +2,21 @@ import numpy as np
 
 class LogisticRegression:
     def __init__(self, learning_rate: float = 1.0, num_iterations: int = 1000):
+        """Set up an untrained logistic regression model.
+
+        `weights` and `bias` are left as placeholders here since the number
+        of features isn't known yet — `initialize_weights`
+        replaces `weights` with a properly sized zero vector
+        once the training data's shape is known.
+
+        Args:
+            learning_rate: Step size for each gradient descent update — how
+                far `weights`/`bias` move against the gradient on every
+                iteration. Too high can overshoot and fail to converge; too
+                low converges very slowly.
+            num_iterations: Number of gradient descent passes to run over
+                the full training set during `train_model`.
+        """
         self.learning_rate = learning_rate
         self.num_iterations = num_iterations
         self.weights: np.ndarray = np.ndarray(shape=(0, 0))
