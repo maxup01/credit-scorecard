@@ -14,7 +14,7 @@ class LogisticRegression:
     def hypothesis(self, X: np.ndarray) -> np.ndarray:
         dot_product = np.dot(X, self.weights)
 
-        return sigmoid(dot_product + self.bias)
+        return self.sigmoid(dot_product + self.bias)
 
     @staticmethod
     def cost(H: np.ndarray, Y: np.ndarray):
@@ -22,5 +22,6 @@ class LogisticRegression:
         cost = np.squeeze(cost)
         return cost
 
-def sigmoid(z: np.ndarray) -> np.ndarray:
-    return 1 / (1 + np.exp(-z))
+    @staticmethod
+    def sigmoid(z: np.ndarray) -> np.ndarray:
+        return 1 / (1 + np.exp(-z))
