@@ -48,6 +48,13 @@ class LoanGrade(Enum):
     def one_hot(self) -> np.ndarray:
         return one_hot(LoanGrade.values(), self.value)
 
+class DefaultOnFile(Enum):
+    YES = "Y"
+    NO = "N"
+
+    def encode_flag(self) -> np.ndarray:
+        return np.array([1 if self == DefaultOnFile.YES else 0])
+
 def one_hot(variants: list[str], value: str) -> np.ndarray:
     """Build a one-hot vector marking where ``value`` sits among ``variants``.
 
