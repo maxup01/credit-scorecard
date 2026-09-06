@@ -153,6 +153,24 @@ class LogisticRegression:
             X_test: np.ndarray,
             Y_test: np.ndarray
     ) -> dict[str, np.ndarray | list[float] | float]:
+        """Train the model on the training set and report its performance.
+
+        Initializes fresh weights/bias sized for `X_train`'s feature count,
+        runs full batch gradient descent on the training set, then evaluates
+        the resulting model's accuracy on both the training and held-out
+        test sets, printing both.
+
+        Args:
+            X_train: Training feature matrix, shape `(n_features, m_train)`.
+            Y_train: Training labels, shape `(1, m_train)`.
+            X_test: Test feature matrix, shape `(n_features, m_test)`.
+            Y_test: Test labels, shape `(1, m_test)`.
+
+        Returns:
+            dict: The recorded training costs, both sets' predictions, the
+            final `weights`/`bias`/`learning_rate`, and the train/test
+            accuracy percentages.
+        """
         dimensions = np.shape(X_train)[0]
         self.initialize_weights(dimensions)
 
@@ -183,6 +201,21 @@ class LogisticRegression:
 
     @staticmethod
     def calculate_gradient(H: np.ndarray, X: np.ndarray, Y: np.ndarray) -> dict[str, np.ndarray | float]:
+        """Gradient of the cost function w.r.t. `weights` and `bias`.
+
+        Tells `gradient_descent` which direction (and how far) to move each
+        parameter to reduce the cost: `dw` mirrors `weights`' shape (one
+        gradient value per feature), `db` is a single scalar (one bias).
+
+        Args:
+            H: Predicted probabilities, shape `(1, m)`.
+            X: Feature matrix, shape `(n_features, m)`.
+            Y: True labels, shape `(1, m)`.
+
+        Returns:
+            dict: `{"dw": ..., "db": ...}` — `dw` shaped `(n_features, 1)`,
+            `db` a scalar, both averaged over the `m` examples.
+        """
         m = X.shape[1]
 
         dw = np.dot(X, (H - Y).T) / m
@@ -192,6 +225,20 @@ class LogisticRegression:
 
     @staticmethod
     def cost(H: np.ndarray, Y: np.ndarray) -> float:
+        """Binary cross-entropy between predictions `H` and true labels `Y`.
+
+        Averages the per-example loss (`-[y·log(h) + (1-y)·log(1-h)]`) over
+        all examples, so it stays comparable regardless of dataset size —
+        lower means the predicted probabilities line up better with the
+        true labels.
+
+        Args:
+            H: Predicted probabilities, shape `(1, m)`.
+            Y: True labels, shape `(1, m)`.
+
+        Returns:
+            float: The mean loss across all `m` examples.
+        """
         cost = -np.sum(Y * np.log(H) + (1 - Y) * np.log(1 - H)) / H.shape[1]
         cost = np.squeeze(cost)
         return cost
