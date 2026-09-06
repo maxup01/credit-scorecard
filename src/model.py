@@ -55,7 +55,24 @@ class LogisticRegression:
 
         return self.sigmoid(dot_product + self.bias)
 
-    def gradient_position(self, X: np.ndarray, Y: np.ndarray) -> tuple[dict[str, np.ndarray | float], float]:
+    def gradient_position(
+            self, X: np.ndarray, Y: np.ndarray
+    ) -> tuple[dict[str, np.ndarray | float], float]:
+        """Evaluate the model at its current weights/bias: cost and gradient.
+
+        One full pass over `X`/`Y` at whatever `weights`/`bias` currently
+        are — used once per `gradient_descent` iteration to know both how
+        wrong the current model is and which direction to move
+        `weights`/`bias` next.
+
+        Args:
+            X: Feature matrix, shape.
+            Y: True labels, shape.
+
+        Returns:
+            A pair — `grads` is from `calculate_gradient`,
+            `cost` is the scalar loss from `cost`.
+        """
         H = self.hypothesis(X)
 
         cost = self.cost(H, Y)
