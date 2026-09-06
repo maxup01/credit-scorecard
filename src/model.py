@@ -10,3 +10,6 @@ class LogisticRegression:
     def initialize_weights(self, dimensions: int):
         self.weights = np.zeros((dimensions, 1))
         self.bias = 0
+
+def sigmoid(z: float):
+    return 1 / (1 + np.exp(-z))
