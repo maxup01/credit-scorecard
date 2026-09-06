@@ -23,6 +23,16 @@ class LogisticRegression:
         self.bias = 0
 
     def initialize_weights(self, dimensions: int):
+        """Reset weights/bias to zero, sized for the given number of features.
+
+        Called from `train_model` once the training data's feature count is
+        known, replacing the empty placeholder `weights` set in `__init__`.
+
+        Args:
+            dimensions: Number of features — `weights` is created with one
+                entry per feature, shaped to match how
+                `hypothesis`/`calculate_gradient` expect it.
+        """
         self.weights = np.zeros((dimensions, 1))
         self.bias = 0
 
