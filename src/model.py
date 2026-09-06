@@ -26,7 +26,7 @@ class LogisticRegression:
         return {"dw": dw, "db": db}
 
     @staticmethod
-    def cost(H: np.ndarray, Y: np.ndarray):
+    def cost(H: np.ndarray, Y: np.ndarray) -> float:
         cost = -np.sum(Y * np.log(H) + (1 - Y) * np.log(1 - H)) / len(H)
         cost = np.squeeze(cost)
         return cost
