@@ -120,6 +120,17 @@ class LogisticRegression:
         return params, gradients, costs
 
     def predict(self, X: np.ndarray) -> np.ndarray:
+        """Classify every example in `X` as default (1) or no default (0).
+
+        Runs `hypothesis` to get each example's predicted probability, then
+        thresholds at 0.5 to turn that probability into a hard label.
+
+        Args:
+            X: Feature matrix, one column per example.
+
+        Returns:
+            np.ndarray: 0/1 labels, one per example in `X`.
+        """
         X = np.array(X)
         m = X.shape[1]
 
