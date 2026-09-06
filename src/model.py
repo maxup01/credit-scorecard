@@ -16,5 +16,11 @@ class LogisticRegression:
 
         return sigmoid(dot_product + self.bias)
 
+    @staticmethod
+    def cost(H: np.ndarray, Y: np.ndarray):
+        cost = -np.sum(Y * np.log(H) + (1 - Y) * np.log(1 - H)) / len(H)
+        cost = np.squeeze(cost)
+        return cost
+
 def sigmoid(z: np.ndarray) -> np.ndarray:
     return 1 / (1 + np.exp(-z))
