@@ -1,4 +1,6 @@
 import numpy as np
+from prompt_toolkit.key_binding.bindings.named_commands import self_insert
+
 
 class LogisticRegression:
     def __init__(self, learning_rate: float = 1.0, num_iterations: int = 1000):
@@ -23,6 +25,29 @@ class LogisticRegression:
         grads = self.calculate_gradient(H, X, Y)
 
         return grads, cost
+
+    def gradient_descent(self, X: np.ndarray, Y: np.ndarray):
+        costs = []
+
+        for i in range(0, self.num_iterations):
+            gradients, cost = self.gradient_position(X, Y)
+
+            dw = gradients["dw"]
+            db = gradients["db"]
+
+            self.weights -= self.learning_rate * dw
+            self.bias -= self.learning_rate * db
+
+            if i % 100 == 0:
+                costs.append(cost)
+
+                print(f"Cost after iteration {i}: {cost}")
+
+        params = {"weights": self.weights, "b": self.bias}
+
+        gradients, cost = self.gradient_position(X, Y)
+
+        return params, gradients, costs
 
     @staticmethod
     def calculate_gradient(H: np.ndarray, X: np.ndarray, Y: np.ndarray) -> dict[str, np.ndarray | float]:
