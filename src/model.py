@@ -81,6 +81,22 @@ class LogisticRegression:
         return grads, cost
 
     def gradient_descent(self, X: np.ndarray, Y: np.ndarray):
+        """Train `weights`/`bias` on `X`/`Y` via batch gradient descent.
+
+        Runs `num_iterations` update steps: each one evaluates the current
+        cost/gradient over the *entire* `X`/`Y` (`gradient_position`), then
+        nudges `weights`/`bias` by `learning_rate` against that gradient.
+        Every 100th iteration's cost is recorded and printed, so progress
+        can be watched as training runs.
+
+        Args:
+            X: Feature matrix.
+            Y: True labels.
+
+        Returns:
+            A tuple — `params` is the final, `gradients` is the gradient at
+            that final point, and `costs` is the list of recorded costs.
+        """
         costs = []
 
         for i in range(0, self.num_iterations):
