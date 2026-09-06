@@ -11,5 +11,10 @@ class LogisticRegression:
         self.weights = np.zeros((dimensions, 1))
         self.bias = 0
 
-def sigmoid(z: float):
+    def hypothesis(self, X: np.ndarray) -> np.ndarray:
+        dot_product = np.dot(X, self.weights)
+
+        return sigmoid(dot_product + self.bias)
+
+def sigmoid(z: np.ndarray) -> np.ndarray:
     return 1 / (1 + np.exp(-z))
