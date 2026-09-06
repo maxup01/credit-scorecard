@@ -37,6 +37,20 @@ class LogisticRegression:
         self.bias = 0
 
     def hypothesis(self, X: np.ndarray) -> np.ndarray:
+        """Predict the probability of default for every example in `X`.
+
+        Computes `sigmoid` — the model's current best guess, given
+        `weights`/`bias` as they stand right now (zeros before training,
+        improving after each `gradient_descent` step).
+
+        Args:
+            X: Feature matrix, shape — one column per
+                example.
+
+        Returns:
+            np.ndarray: Predicted probabilities, shape, one per
+            example in `X`.
+        """
         dot_product = np.dot(self.weights.T, X)
 
         return self.sigmoid(dot_product + self.bias)
