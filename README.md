@@ -1,6 +1,6 @@
 # Credit Scorecard
 
-A loan-default classifier built from scratch — logistic regression implemented directly in NumPy, with no scikit-learn, trained on the Kaggle [credit risk dataset](https://www.kaggle.com/datasets/laotse/credit-risk-dataset).
+A loan-default classifier built from scratch — logistic regression implemented directly in NumPy, without using ML framework, trained on the Kaggle [credit risk dataset](https://www.kaggle.com/datasets/laotse/credit-risk-dataset).
 
 Run it, wait for training, then type in a loan application and get a verdict: **likely to default** or **safe to grant**.
 
