@@ -25,10 +25,10 @@ NUMERIC_FEATURES = [
 def to_feature_vector(row, mean: np.ndarray, std: np.ndarray) -> np.ndarray:
     """Turn one row (a dataset row, or a parsed application) into a feature vector.
 
-    Numeric fields are standardized with `mean`/`std` from the training set,
-    so a single applicant's raw values line up with the scale the model was
-    trained on; without this, large raw values (e.g. income) overflow the
-    sigmoid during training.
+    Numeric fields are standardized with the given `mean`/`std`, so a single
+    applicant's raw values line up with the scale the model was trained on;
+    without this, large raw values (e.g. income) overflow the sigmoid during
+    training. See `train` for how those statistics are computed.
     """
     numeric = np.array([row[field] for field in NUMERIC_FEATURES], dtype=float)
     numeric = (numeric - mean) / std
